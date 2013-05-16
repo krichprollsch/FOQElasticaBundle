@@ -264,6 +264,7 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
+                ->append($this->getIdNode())
                 ->append($this->getMappingsNode())
                 ->append($this->getSourceNode())
                 ->append($this->getBoostNode())
@@ -416,6 +417,23 @@ class Configuration implements ConfigurationInterface
             $nestings[$property] = array();
         }
         $nestings[$property] = array_merge_recursive($nestings[$property], $this->getNestingsForType($field[$property]));
+    }
+
+    /**
+     * Returns the array node used for "_id".
+     */
+    protected function getIdNode()
+    {
+        $builder = new TreeBuilder();
+        $node = $builder->root('_id');
+
+        $node
+            ->children()
+            ->scalarNode('path')->end()
+            ->end()
+        ;
+
+        return $node;
     }
 
     /**
