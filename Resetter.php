@@ -72,10 +72,8 @@ class Resetter
     {
         $mapping = \Elastica_Type_Mapping::create($indexConfig['properties']);
 
-        foreach($indexConfig['properties'] as $type) {
-            if (!empty($type['_parent']) && $type['_parent'] !== '~') {
-                $mapping->setParam('_parent', array('type' => $type['_parent']['type']));
-            }
+        if (isset($indexConfig['_parent'])) {
+            $mapping->setParam('_parent', array('type' => $indexConfig['_parent']['type']));
         }
 
         return $mapping;

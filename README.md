@@ -120,9 +120,9 @@ Our type is now available as a service: `fos_elastica.index.website.user`. It is
                 types:
                     comment:
                         mappings:
-                            post: {_parent: { type: "post", identifier: "id" } }
                             date: { boost: 5 }
                             content: ~
+                        _parent: { type: "post", property: "post", identifier: "id" }
 
 ### Declaring `nested` or `object`
 
