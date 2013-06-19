@@ -124,6 +124,12 @@ Our type is now available as a service: `fos_elastica.index.website.user`. It is
                             content: ~
                         _parent: { type: "post", property: "post", identifier: "id" }
 
+The parent filed declaration has the following values:
+
+ * `type`: The parent type.
+ * `property`: The property in the child entity where to look for the parent entity. It may be ignored if is equal to the parent type.
+ * `identifier`: The property in the parent entity which have the parent identifier. Defaults to `id`.
+
 ### Declaring `nested` or `object`
 
     fos_elastica:
